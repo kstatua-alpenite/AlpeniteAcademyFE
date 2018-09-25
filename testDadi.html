@@ -1,0 +1,85 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <p>        
+        Titolo: Dadi
+        Descrizione: Creazione di un gioco di dadi
+        Regole: 
+        STEP 1: 
+                Giocano 2 player e tirano un dado uno alla volta quando vogliono.
+        STEP 2: 
+                Chi gira il dado con il valore più alto vince
+        STEP 3:
+                Se il vincitore vince due volte di fila allora ha perso
+        </p>
+        <button id="playerA" onclick="playerA_Play();">Player A</button>
+        <button id="playerB" onclick="playerB_Play();">Player B</button>
+        <script type="text/javascript">
+        var tiroA = 0,
+            tiroB = 0,
+            vittoriaConsA = 0,
+            vittoriaConsB = 0,
+            playerA = 0,
+            playerB = 0;
+
+        function getValue() {
+            return Math.round((Math.random() * 5) + 1);
+        }
+
+        function playerA_Play() {
+            if (tiroA <= tiroB) {
+                console.log("Lancio di A");
+                playerA = getValue();
+                console.log(playerA);
+                tiroA++;
+                checkWinner();
+            }
+        }
+        function playerB_Play() {
+            if (tiroB <= tiroA) {
+                console.log("Lancio di B");
+                playerB = getValue();
+                console.log(playerB);
+                tiroB++;
+                checkWinner();
+            }
+        }
+
+        function checkWinner() {
+            if (tiroA == tiroB) {
+                if (playerA > playerB) {
+                    vittoriaConsA++;
+                    vittoriaConsB = 0;
+                    checkStreak(true);
+                } else if (playerB > playerA) {
+                    vittoriaConsB++;
+                    vittoriaConsA = 0;
+                    checkStreak(false);
+                } else {
+                    console.log("C'è stato un Pareggio");
+                    vittoriaConsA = 0;
+                    vittoriaConsB = 0;
+                }
+            }
+        }
+
+        function checkStreak(playerWinner) {
+            if (playerWinner && vittoriaConsA != 2) {
+                console.log("Ha vinto il player A.");
+            } else if (!playerWinner && vittoriaConsB != 2) {
+                console.log("Ha vinto il player B.");
+            } else if (vittoriaConsA == 2) {
+                vittoriaConsB++;
+                vittoriaConsA = 0;
+                console.log("Ha vinto il player B.");
+            } else if (vittoriaConsB == 2) {
+                vittoriaConsA++;
+                vittoriaConsB = 0;
+                console.log("Ha vinto il player A.");
+            }
+        }
+
+        </script>
+    </body>
+</html>
