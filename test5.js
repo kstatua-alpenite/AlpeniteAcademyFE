@@ -32,4 +32,14 @@ Button acquista     |Button acquista     |Button acquista     |
                     |                    |                    |
 ____________________|____________________|____________________|
 
+
+<input id="pizza" type="number"/>
+<input id="piadina" type="number"/>
+<input id="kebab" type="number"/>
+<script type="text/javascript">
+    function getData(productName) {
+        return document.getElementById(productName).value;
+    }
+</script>
+
 */
